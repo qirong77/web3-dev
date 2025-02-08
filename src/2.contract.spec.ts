@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 import { describe, expect, it } from "vitest";
 import { NETWORD_URL } from "./private";
 
+
 describe("contract", () => {
     /* 
     https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f#readContract
@@ -17,4 +18,10 @@ describe("contract", () => {
         console.log(totalSupply,tokenName)
         expect(tokenName === 'Dai Stablecoin').toBeTruthy()
     });
+    /* 
+    1. sepolia contract info: https://sepolia.etherscan.io/contractsVerified 
+    */
+    it('write contract',async () => {
+
+    })
 });

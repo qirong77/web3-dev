@@ -15,7 +15,9 @@ describe("account balance", () => {
         console.log(formatEther(balance));
         expect(balance > 0);
     });
-    it('get other token',async () => {
-        
+    // TODO
+    it('get other token, eg: USDT',async () => {
+        const provider = new ethers.JsonRpcProvider(NETWORD_URL.ETH_SEPOLIA);
+        const balance = await provider.getBalance(devAcccountA.address);
     })
 });
