@@ -16,8 +16,14 @@ describe("contract", () => {
         const tokenName = await contract.name();
         const totalSupply = await contract.totalSupply()
         console.log(totalSupply,tokenName)
+        const contractOfENSName = new ethers.Contract("dai.tokens.ethers.eth",abiOfDia,provider)
+        const tokenNameOfENSName = await contractOfENSName.name()
         expect(tokenName === 'Dai Stablecoin').toBeTruthy()
+        expect(tokenNameOfENSName === tokenName).toBeTruthy()
     });
+    it('contrast of ENS name',async () => {
+        
+    })
     /* 
     1. sepolia contract info: https://sepolia.etherscan.io/contractsVerified 
     */

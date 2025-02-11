@@ -9,12 +9,20 @@ describe("account balance", () => {
         console.log(formatEther(balance));
         expect(typeof balance === "bigint");
     });
+
+    it("get eth balance by ENS name", async () => {
+        const provider = new ethers.JsonRpcProvider(NETWORD_URL.ETH_MAIN);
+        const balance = await provider.getBalance("ethers.eth");
+        console.log(balance)
+    })
+
     it("get eth balance sepolia", async () => {
         const provider = new ethers.JsonRpcProvider(NETWORD_URL.ETH_SEPOLIA);
         const balance = await provider.getBalance(devAcccountA.address);
         console.log(formatEther(balance));
         expect(balance > 0);
     });
+    
     // TODO
     it('get other token, eg: USDT',async () => {
         const provider = new ethers.JsonRpcProvider(NETWORD_URL.ETH_MAIN);
@@ -24,5 +32,6 @@ describe("account balance", () => {
         const contract = new ethers.Contract(usdtContractAddress, usdtContractABI, provider);
         const balance = await contract.balances(accountMain.address)
         console.log(balance)
+        // const b2 = await provider.getBalance("ethers.")
     })
 });
