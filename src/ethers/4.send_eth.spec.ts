@@ -1,6 +1,6 @@
 import { ethers, formatUnits, parseEther } from "ethers";
 import { describe, expect, it } from "vitest";
-import { devAcccountA, devAcccountB, NETWORD_URL } from "./private";
+import { devAcccountA, devAcccountB, NETWORD_URL } from "../private";
 import { formatEther } from "ethers";
 
 describe("transactions", () => {
@@ -21,7 +21,7 @@ describe("transactions", () => {
         console.log(balanceAAfterTransaction, balanceBAfterTransaction);
         expect(balanceAAfterTransaction < balanceA);
     });
-    it("get  eth transfer fee", async () => {
+    it("get eth transfer fee", async () => {
         const sepoliaProvider = new ethers.JsonRpcProvider(NETWORD_URL.ETH_SEPOLIA);
         const wallet = new ethers.Wallet(devAcccountA.privateKey, sepoliaProvider);
         const pt = await wallet.populateTransaction({
