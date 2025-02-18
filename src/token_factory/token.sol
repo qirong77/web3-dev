@@ -3,10 +3,11 @@ pragma solidity >=0.8.2 <0.9.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract QirongToken is ERC20 {
+contract Token is ERC20 {
     address public owner;
     address public creator;
-
+    uint256 price = 1;
+    event ELogMessage(string message);
     constructor(
         address _creator,
         string memory _name,
@@ -31,5 +32,11 @@ contract QirongToken is ERC20 {
     }
     function getCreator() external view returns (address) {
         return creator;
+    }
+    function getPrice() external view  returns (uint256)  {
+        return price;
+    }
+    function methodTobeCall() external  {
+        emit ELogMessage("method is called");
     }
 }
