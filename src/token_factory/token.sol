@@ -6,7 +6,8 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract Token is ERC20 {
     address public owner;
     address public creator;
-    uint256 price = 1;
+    uint raised = 0;
+    uint256 price = 2;
     event ELogMessage(string message);
     constructor(
         address _creator,
@@ -18,7 +19,6 @@ contract Token is ERC20 {
         creator = _creator;
         _mint(msg.sender, _totalSupply); // 调用ERC20的 _mint 函数，初始分配代币
     }
-
     function getMsgSenderAddress() external view returns (address) {
         return msg.sender;
     }
@@ -36,7 +36,10 @@ contract Token is ERC20 {
     function getPrice() external view  returns (uint256)  {
         return price;
     }
-    function methodTobeCall() external  {
-        emit ELogMessage("method is called");
+    function updateRaised(uint salePrice)  public{
+        raised += salePrice;
+    }
+    function clearRaised() public{
+        raised = 0;
     }
 }

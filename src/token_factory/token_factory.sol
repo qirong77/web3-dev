@@ -15,7 +15,7 @@ contract TokenFactory {
     }
 
     function createToken(string memory tokenName) external payable {
-        require(msg.value > fee,"you need pay more");
+        require(msg.value > fee, "you need pay more");
         Token token = new Token(msg.sender, tokenName, tokenName, 1000);
         createdTokens[address(token)] = token;
         createdTokenAddresses.push(address(token));
@@ -41,9 +41,12 @@ contract TokenFactory {
         return (tokenAddresses, tokenNames);
     }
 
-    function buy(address tokenAddress, uint256 amout) external {
+    function buy(address tokenAddress, uint256 amout) external payable {
+        require(msg.value > 10, "at least pay 10 gwai");
         Token targetToken = Token(tokenAddress);
         uint256 cost = targetToken.getPrice() * amout;
+        targetToken.updateRaised(cost);
         emit ELogMessage("cost info", cost);
+        targetToken.transfer(msg.sender, amout);
     }
 }
